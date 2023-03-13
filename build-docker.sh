@@ -1,0 +1,1 @@
+docker build -t eu.gcr.io/vhdplus/yosys-rest .
