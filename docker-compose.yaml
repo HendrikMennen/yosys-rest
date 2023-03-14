@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   myapp:
-    container_name: test
+    container_name: yosys-rest-dev
     restart: always
     build:
       context: .
