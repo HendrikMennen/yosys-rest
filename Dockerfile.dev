@@ -1,0 +1,27 @@
+# Use Image with YOSYS, NEXTPNR, GHDL
+FROM gcr.io/hdl-containers/impl
+
+# Install Node 16
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs \
+    build-essential && \
+    node --version && \ 
+    npm --version \
+    && apt-get autoclean && apt-get clean && apt-get -y autoremove \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /usr/local/apps/myapp
+
+COPY package.json ./
+RUN npm install && npm cache clean --force
+ENV PATH=/usr/local/myapp/node_modules/.bin:$PATH
+
+WORKDIR /usr/local/apps/myapp/dev
+COPY tsconfig.json ./
+
+COPY src ./src
+COPY .env ./
+
+EXPOSE ${PORT}
+
+CMD [ "npm", "run", "dev" ]

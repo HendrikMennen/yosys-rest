@@ -8,4 +8,6 @@ app.get('/', (req: any, res: any) => {
     res.send(t.toString());
 });
 
-app.listen(3000, () => { console.log('Server is up!') })
+const port = process.env.PORT || 3232
+
+app.listen(port, () => { console.log('Server is up on port ' + port + '!') })

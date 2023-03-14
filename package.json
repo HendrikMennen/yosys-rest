@@ -21,21 +21,9 @@
     "dist/"
   ],
   "scripts": {
-    "start": "node ./dist/index",
-    "serve": "ts-node-dev ./src/index.ts",
-    "build": "npm run clean && tsc",
-    "changelog": "conventional-changelog -p angular -u",
-    "changelog:update": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "clean": "(rm -r ./.nyc_output || true) && (rm -r ./coverage || true) && (rm -r ./dist || true)",
-    "clean:all": "npm run clean && (rm -r ./node_modules || true)",
-    "cover": "nyc npm run test",
-    "cover:check": "nyc --check-coverage --reporter=lcov npm run test",
-    "preversion": "npm run build && npm run cover:check",
-    "postversion": "git push && git push --tags",
-    "prepare": "npm run build",
-    "test": "mocha",
-    "upgrade": "npx npm-check -u",
-    "version": "npm run build && npm run changelog:update"
+    "build": "tsc",
+    "start": "node -r dotenv/config ./dist/index",
+    "dev": "ts-node-dev --no-deps --respawn --poll --interval 1000 -r dotenv/config src/server.ts"
   },
   "devDependencies": {
     "@types/chai": "^4.3.4",
@@ -45,6 +33,7 @@
     "chai": "^4.3.7",
     "conventional-changelog-cli": "^2.2.2",
     "cz-conventional-changelog": "^3.3.0",
+    "dotenv": "^16.0.3",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "source-map-support": "^0.5.21",
