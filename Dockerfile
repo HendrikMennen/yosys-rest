@@ -9,7 +9,7 @@ RUN apt-get update && \
     git \
     gnupg \
 
-RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs \
     build-essential && \
     node --version && \ 
