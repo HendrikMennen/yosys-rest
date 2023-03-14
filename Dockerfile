@@ -1,6 +1,7 @@
+# Use Image with YOSYS, NEXTPNR, GHDL
 FROM gcr.io/hdl-containers/impl
 
-#Install NodeJS
+# Install Node 16
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
     open-ssl \
