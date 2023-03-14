@@ -1,10 +1,22 @@
-ARG REGISTRY='gcr.io/hdl-containers/impl'
+FROM gcr.io/hdl-containers/impl
 
-FROM $REGISTRY/build/build AS tools
+#Install NodeJS
+RUN apt-get update && \
+    apt-get install -yq --no-install-recommends \
+    open-ssl \
+    curl \ 
+    wget \
+    git \
+    gnupg \
+    # more stuff
 
-COPY --from=impl /tools
-
-FROM node:16
+RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && \
+    apt-get install -y nodejs \
+    build-essential && \
+    node --version && \ 
+    npm --version \
+    && apt-get autoclean && apt-get clean && apt-get -y autoremove \
+    && rm -rf /var/lib/apt/lists/*
 
 # Create app directory
 WORKDIR /usr/src/app
