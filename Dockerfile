@@ -2,14 +2,6 @@
 FROM gcr.io/hdl-containers/impl
 
 # Install Node 16
-RUN apt-get update && \
-    apt-get install -yq --no-install-recommends \
-    open-ssl \
-    curl \ 
-    wget \
-    git \
-    gnupg
-
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs \
     build-essential && \
